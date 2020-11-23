@@ -13,7 +13,7 @@ router.route('/seats/random').get((req, res) => {
 
 router.route('/seats/:id').get((req, res) => {
   const element = db.seats.filter(
-    (element) => element.id === parseInt(req.params.id)
+    (element) => element.id == req.params.id
   );
   res.send(element);
 });
@@ -37,7 +37,7 @@ router.route('/seats').post((req, res) => {
 router.route('/seats/:id').put((req, res) => {
   const { day, seat, client, email } = req.body;
   const element = db.seats.filter(
-    (element) => element.id === parseInt(req.params.id)
+    (element) => element.id == req.params.id
   );
   const index = db.seats.indexOf(element);
   const newSeat = {
@@ -53,7 +53,7 @@ router.route('/seats/:id').put((req, res) => {
 
 router.route('/seats/:id').delete((req, res) => {
   const element = db.seats.filter(
-    (element) => element.id === parseInt(req.params.id)
+    (element) => element.id == req.params.id
   );
   const index = db.seats.indexOf(element);
   db.seats.splice(index, 1);

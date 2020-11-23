@@ -13,7 +13,7 @@ router.route('/testimonials/random').get((req, res) => {
 
 router.route('/testimonials/:id').get((req, res) => {
   const element = db.testimonials.filter(
-    (element) => element.id === parseInt(req.params.id)
+    (element) => element.id == req.params.id
   );
   res.send(element);
 });
@@ -34,7 +34,7 @@ router.route('/testimonials').post((req, res) => {
 
 router.route('/testimonials/:id').put((req, res) => {
   const element = db.testimonials.filter(
-    (element) => element.id === parseInt(req.params.id)
+    (element) => element.id == req.params.id
   );
   const index = db.testimonials.indexOf(element);
   const testimonial = {
@@ -49,7 +49,7 @@ router.route('/testimonials/:id').put((req, res) => {
 
 router.route('/testimonials/:id').delete((req, res) => {
   const element = db.testimonials.filter(
-    (element) => element.id === parseInt(req.params.id)
+    (element) => element.id == req.params.id
   );
   const index = db.testimonials.indexOf(element);
   db.testimonials.splice(index, 1);

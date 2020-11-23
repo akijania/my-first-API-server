@@ -13,7 +13,7 @@ router.route('/concerts/random').get((req, res) => {
 
 router.route('/concerts/:id').get((req, res) => {
   const element = db.concerts.filter(
-    (element) => element.id === parseInt(req.params.id)
+    (element) => element.id == req.params.id
   );
   res.send(element);
 });
@@ -37,7 +37,7 @@ router.route('/concerts').post((req, res) => {
 
 router.route('/concerts/:id').put((req, res) => {
   const element = db.concerts.filter(
-    (element) => element.id === parseInt(req.params.id)
+    (element) => element.id == req.params.id
   );
   const index = db.concerts.indexOf(element);
   const concert = {
@@ -56,7 +56,7 @@ router.route('/concerts/:id').put((req, res) => {
 
 router.route('/concerts/:id').delete((req, res) => {
   const element = db.concerts.filter(
-    (element) => element.id === parseInt(req.params.id)
+    (element) => element.id == req.params.id
   );
   const index = db.concerts.indexOf(element);
   db.concerts.splice(index, 1);
