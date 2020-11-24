@@ -12,9 +12,7 @@ router.route('/seats/random').get((req, res) => {
 });
 
 router.route('/seats/:id').get((req, res) => {
-  const element = db.seats.filter(
-    (element) => element.id == req.params.id
-  );
+  const element = db.seats.filter((element) => element.id == req.params.id);
   res.send(element);
 });
 
@@ -29,16 +27,20 @@ router.route('/seats').post((req, res) => {
     email,
   };
 
-  db.seats.push(newSeat);
+  if (
+    db.seats.some((x) => x.day === day && x.seat == seat)
+  ) {
+    return res.status(409).send({ message: 'The slot is already taken...' });
+  } else {
+    db.seats.push(newSeat);
 
-  return res.json({ message: 'OK' });
+    return res.json({ message: 'OK' });
+  }
 });
 
 router.route('/seats/:id').put((req, res) => {
   const { day, seat, client, email } = req.body;
-  const element = db.seats.filter(
-    (element) => element.id == req.params.id
-  );
+  const element = db.seats.filter((element) => element.id == req.params.id);
   const index = db.seats.indexOf(element);
   const newSeat = {
     day: day,
@@ -52,9 +54,7 @@ router.route('/seats/:id').put((req, res) => {
 });
 
 router.route('/seats/:id').delete((req, res) => {
-  const element = db.seats.filter(
-    (element) => element.id == req.params.id
-  );
+  const element = db.seats.filter((element) => element.id == req.params.id);
   const index = db.seats.indexOf(element);
   db.seats.splice(index, 1);
 
