@@ -33,7 +33,8 @@ app.use((req, res) => {
   res.status(404).send({ message: 'Not found...' });
 });
 
-mongoose.connect(process.env.DB_LINK, { useNewUrlParser: true });
+const dbURI = process.env.NODE_ENV === 'production' ? 'mongodb://localhost:27017/NewWaveDB' : process.env.DB_LINK;
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.once('open', () => {
@@ -50,3 +51,4 @@ const io = socket(server);
 io.on('connection', (socket) => {
   console.log('New socket!');
 });
+module.exports = server;
