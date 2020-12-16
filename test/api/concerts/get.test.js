@@ -43,10 +43,6 @@ describe('GET /api/concerts/', () => {
     expect(res.status).to.be.equal(200);
     expect(res.body).to.be.an('array');
     expect(res.body.length).to.be.equal(2);
-    const res2 = await request(server).get('/api/concerts/performer/Madonna');
-    expect(res2.status).to.be.equal(200);
-    expect(res2.body).to.be.an('array');
-    expect(res2.body.length).to.be.equal(1);
   });
 
   it('/ should return concerts filtered by genre', async () => {
@@ -54,10 +50,6 @@ describe('GET /api/concerts/', () => {
     expect(res.status).to.be.equal(200);
     expect(res.body).to.be.an('array');
     expect(res.body.length).to.be.equal(2);
-    const res2 = await request(server).get('/api/concerts/genre/Rock');
-    expect(res2.status).to.be.equal(200);
-    expect(res2.body).to.be.an('array');
-    expect(res2.body.length).to.be.equal(1);
   });
 
   it('/ should return concerts filtered by price', async () => {
@@ -65,10 +57,6 @@ describe('GET /api/concerts/', () => {
     expect(res.status).to.be.equal(200);
     expect(res.body).to.be.an('array');
     expect(res.body.length).to.be.equal(2);
-    const res2 = await request(server).get('/api/concerts/price/25/30');
-    expect(res2.status).to.be.equal(200);
-    expect(res2.body).to.be.an('array');
-    expect(res2.body.length).to.be.equal(1);
   });
 
   it('/ should return concerts filtered by day', async () => {
@@ -76,10 +64,6 @@ describe('GET /api/concerts/', () => {
     expect(res.status).to.be.equal(200);
     expect(res.body).to.be.an('array');
     expect(res.body.length).to.be.equal(2);
-    const res2 = await request(server).get('/api/concerts/price/day/3');
-    expect(res2.status).to.be.equal(200);
-    expect(res2.body).to.be.an('array');
-    expect(res2.body.length).to.be.equal(0);
   });
 
   after(async () => {
