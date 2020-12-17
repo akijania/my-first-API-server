@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 const socket = require('socket.io');
+const helmet = require('helmet');
 
 require('dotenv').config();
 
@@ -17,6 +18,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(helmet());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

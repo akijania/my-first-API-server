@@ -1,4 +1,5 @@
 const Seat = require('../models/seat.model');
+const sanitize = require('mongo-sanitize');
 
 exports.getAll = async (req, res) => {
   try {
@@ -33,16 +34,21 @@ exports.getById = async (req, res) => {
 exports.post = async (req, res) => {
   try {
     const { day, seat, client, email } = req.body;
+    if(!day || !seat|| !client|| !email) throw new Error('Invalid data');
+    else {
+    const clientClean = sanitize(client);
+    const emailClean = sanitize(email);
     const newSeat = new Seat({
       day: day,
       seat: seat,
-      client: client,
-      email: email,
+      client: clientClean,
+      email: emailClean,
     });
     await newSeat.save();
     res.json({ message: 'OK' });
+  };
   } catch (err) {
-    res.status(500).json({ message: err });
+    res.status(500).json({ message: "Couldn't connect to DB... Try again" });
   }
 };
 
