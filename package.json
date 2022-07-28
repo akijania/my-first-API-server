@@ -21,7 +21,7 @@
     "joi": "^17.3.0",
     "mocha": "6.2.1",
     "mongo-sanitize": "1.0.1",
-    "mongoose": "5.7.1",
+    "mongoose": "6.4.6",
     "onchange": "6.1.0",
     "socket.io": "2.2.0",
     "uuid": "^8.3.1"
